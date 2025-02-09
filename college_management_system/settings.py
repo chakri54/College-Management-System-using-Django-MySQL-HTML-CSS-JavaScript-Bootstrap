@@ -20,17 +20,10 @@ from django.utils.timezone import now
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'f2zx8*lb*em*-*b+!&1lpp&$_9q9kmkar+l3x90do@s(+sr&x7'  # Consider using your secret key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['smswithdjango.herokuapp.com']
-ALLOWED_HOSTS = ['127.0.0.1']  # Not recommended but useful in dev mode
 
 
 # Application definition
@@ -47,6 +40,7 @@ INSTALLED_APPS = [
     # My Apps
     'main_app.apps.MainAppConfig',
     'exam',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -57,11 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    # Third Part Middleware
     'whitenoise.middleware.WhiteNoiseMiddleware',
-
-    # My Middleware
     'main_app.middleware.LoginCheckMiddleWare',
 ]
 
@@ -86,14 +76,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'college_management_system.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+#for mysql use this
 DATABASES = {
-    #'default': {
-     #   'ENGINE': 'django.db.backends.sqlite3',
-      #  'NAME': BASE_DIR / 'db.sqlite3',
-   # }
      'default': {
          'ENGINE': 'django.db.backends.mysql',
          'NAME': 'mydjango',
@@ -103,7 +88,7 @@ DATABASES = {
          'PORT': '3306'
      }
 }
-
+#for sqlite use this
 #DATABASES = {
  #   'default': {
   #      'ENGINE': 'django.db.backends.sqlite3',
@@ -162,10 +147,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-#EDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTH_USER_MODEL = 'main_app.CustomUser'
 AUTHENTICATION_BACKENDS = ['main_app.EmailBackend.EmailBackend']
-TIME_ZONE = 'Africa/Lagos'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Use your email provider's SMTP server
