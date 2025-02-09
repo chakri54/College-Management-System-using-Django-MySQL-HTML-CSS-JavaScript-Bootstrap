@@ -1,0 +1,1 @@
+# College-Management-System-using-Django-MySQL-HTML-CSS-JavaScript-Bootstrap
